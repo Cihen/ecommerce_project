@@ -18,13 +18,16 @@ import java.util.Base64;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public
+class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
 
     @Autowired
     private ImageUpload imageUpload;
+
+    /* Admin */
 
     @Override
     public List<ProductDto> findAll() {
@@ -165,5 +168,17 @@ public class ProductServiceImpl implements ProductService {
             productDtoList.add(productDto);
         }
         return productDtoList;
+    }
+
+    /* Customer */
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.getAllProducts();
+    }
+
+    @Override
+    public List<Product> listViewProducts() {
+        return productRepository.listViewProducts();
     }
 }

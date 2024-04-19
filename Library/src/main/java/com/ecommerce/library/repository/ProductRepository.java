@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    /*Admin */
+    /* ADMIN */
     @Query("select p from Product p")
     Page<Product> pageProduct(Pageable pageable);
 
@@ -20,4 +20,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select p from Product p where p.name like %?1%")
     List<Product> searchProductsList(String keyword);
+
+    /* CUSTOMER */
+    @Query("select p from Product p where p.is_activated = true and p.is_deleted = false")
+    List<Product> getAllProducts();
+
+    @Query(value = "select * from products p where p.is_deleted = false and p.is_activated = true order by rand() limit 4 ", nativeQuery = true)
+    List<Product> listViewProducts();
 }

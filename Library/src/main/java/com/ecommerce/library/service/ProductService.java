@@ -18,4 +18,8 @@ public interface ProductService {
     ProductDto getById(Long id);
     Page<ProductDto> pageProducts(int pageNo);
     Page<ProductDto> searchProducts(int pageNo, String keyword);
+
+    /* Customer */
+    List<Product> getAllProducts();
+    List<Product> listViewProducts();
 }
