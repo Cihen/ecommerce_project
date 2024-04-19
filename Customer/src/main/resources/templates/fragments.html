@@ -14,17 +14,17 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
     <!-- Font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -201,30 +201,30 @@
 
     <!-- Start Top Search -->
     <div class="top-search" th:fragment="top-search">
-    <div class="container">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
         </div>
     </div>
-</div>
     <!-- End Top Search -->
 
     <!-- Start Slider -->
     <div class="all-title-box" th:fragment="all-title-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Menu</h2>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-                    <li class="breadcrumb-item active"> Menu </li>
-                </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Menu</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                        <li class="breadcrumb-item active"> Menu </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- End Slider -->
 
     <!-- Start Feed  -->
@@ -287,9 +287,9 @@
                     <div class="footer-top-box">
                         <h3>Contact Us</h3>
                         <ul class="list-time">
-                            <li><i class="fas fa-phone-square"></i> Phone number: +84967631186</li>
-                            <li><i class="fas fa-envelope"></i> Email: abc@gmail.com</li>
-                            <li><i class="fas fa-map-marker-alt"></i> Address: Km9, Nguyen Trai, Thanh Xuan</li>
+                            <li><i class="fas fa-phone-square"></i> Phone number: +84373568260</li>
+                            <li><i class="fas fa-envelope"></i> Email: thucchien02@gmail.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Address: 46/109 Nguyen Van Troi, Mo Lao, Ha Dong, Ha Noi</li>
                         </ul>
                     </div>
                 </div>
@@ -316,22 +316,22 @@
 
     <!--  Start Script  -->
     <div th:fragment="script">
-    <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+        <!-- ALL JS FILES -->
+        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <!-- ALL PLUGINS -->
+        <script th:src="@{/js/jquery.superslides.min.js}"></script>
+        <script th:src="@{/js/bootstrap-select.js}"></script>
+        <script th:src="@{/js/inewsticker.js}"></script>
+        <script th:src="@{/js/bootsnav.js}"></script>
+        <script th:src="@{/js/images-loded.min.js}"></script>
+        <script th:src="@{/js/isotope.min.js}"></script>
+        <script th:src="@{/js/owl.carousel.min.js}"></script>
+        <script th:src="@{/js/baguetteBox.min.js}"></script>
+        <script th:src="@{/js/form-validator.min.js}"></script>
+        <script th:src="@{/js/contact-form-script.js}"></script>
+        <script th:src="@{/js/custom.js}"></script>
 </div>
     <!--  End Script  -->
 </body>

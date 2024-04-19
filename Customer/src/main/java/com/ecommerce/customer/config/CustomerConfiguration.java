@@ -46,8 +46,10 @@ public class CustomerConfiguration {
                         author.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 //                                .requestMatchers("/*", "/product-detail/**").permitAll()
 //                                .requestMatchers("/shop/**", "/find-products/**").hasAuthority("CUSTOMER")
+//                                .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
                                 .requestMatchers("/*").permitAll()
-                                .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
+                                .requestMatchers("/find-product/**").permitAll()
+
                 )
                 .formLogin(login ->
                         login.loginPage("/login")
