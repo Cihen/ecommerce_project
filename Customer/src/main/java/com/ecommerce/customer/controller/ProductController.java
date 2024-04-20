@@ -1,5 +1,6 @@
 package com.ecommerce.customer.controller;
 
+import com.ecommerce.library.dto.CategoryDto;
 import com.ecommerce.library.model.Category;
 import com.ecommerce.library.model.Product;
 import com.ecommerce.library.service.CategoryService;
@@ -22,10 +23,10 @@ public class ProductController {
 
     @GetMapping("/products")
     public String products(Model model) {
+        List<CategoryDto> categoryDtoList = categoryService.getCategoriesAndSize();
+        model.addAttribute("categories", categoryDtoList);
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
-        List<Category> categories = categoryService.findAllByActivated();
-        model.addAttribute("categories", categories);
         List<Product> listViewProducts = productService.listViewProducts();
         model.addAttribute("viewProducts", listViewProducts);
         return "shop";
@@ -39,5 +40,16 @@ public class ProductController {
         List<Product> products = productService.getRelatedProducts(categoryId);
         model.addAttribute("products", products);
         return "product-detail";
+    }
+
+    @GetMapping("/products-in-category/{id}")
+    public String getProductsInCategory(@PathVariable("id") Long categoryId, Model model) {
+        Category category = categoryService.findById(categoryId);
+        List<Product> products = productService.getProductsInCategory(categoryId);
+        List<CategoryDto> categoryDtoList = categoryService.getCategoriesAndSize();
+        model.addAttribute("categories", categoryDtoList);
+        model.addAttribute("category", category);
+        model.addAttribute("products", products);
+        return "products-in-category";
     }
 }
