@@ -197,4 +197,14 @@ class ProductServiceImpl implements ProductService {
     public List<Product> getProductsInCategory(Long categoryId) {
         return productRepository.getProductsInCategory(categoryId);
     }
+
+    @Override
+    public List<Product> filterHighPrice() {
+        return productRepository.filterHighPrice();
+    }
+
+    @Override
+    public List<Product> filterLowPrice() {
+        return productRepository.filterLowPrice();
+    }
 }
