@@ -27,7 +27,7 @@ public class ShoppingCart {
 
     private int totalItems;
 
-    @OneToMany(cascade = CascadeType.DETACH, mappedBy = "cart")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItems;
 
     public ShoppingCart() {

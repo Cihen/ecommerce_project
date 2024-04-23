@@ -55,7 +55,7 @@ public class CustomerConfiguration {
                 .formLogin(login ->
                         login.loginPage("/login")
                                 .loginProcessingUrl("/do-login")
-                                .defaultSuccessUrl("/index", true)
+                                .defaultSuccessUrl("/home", true)
                                 .permitAll()
                 )
                 .logout(logout ->
@@ -63,6 +63,7 @@ public class CustomerConfiguration {
                                 .clearAuthentication(true)
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .logoutSuccessUrl("/login?logout")
+                                .deleteCookies("JSESSIONID").permitAll()
                                 .permitAll()
                 )
                 .authenticationManager(authenticationManager)

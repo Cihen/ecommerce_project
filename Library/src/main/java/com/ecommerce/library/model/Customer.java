@@ -1,6 +1,7 @@
 package com.ecommerce.library.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,8 +23,10 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
 
+    @Size(min = 3, max = 15, message = "Firstname should have 3-15 characters !")
     private String firstName;
 
+    @Size(min = 3, max = 15, message = "Firstname should have 3-15 characters !")
     private String lastName;
 
     private String username;
@@ -46,14 +49,14 @@ public class Customer {
     private Collection<Role> roles;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    private ShoppingCart cart;
+    private ShoppingCart shoppingCart;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Customer() {
 //        this.country = "VN";
-        this.cart = new ShoppingCart();
+        this.shoppingCart = new ShoppingCart();
         this.orders = new ArrayList<>();
     }
 
@@ -70,7 +73,7 @@ public class Customer {
                 ", city=" + city.getName() +
 //                ", country='" + country + '\'' +
                 ", roles=" + roles +
-                ", cart=" + cart.getId() +
+                ", cart=" + shoppingCart.getId() +
                 ", orders=" + orders.size() +
                 '}';
     }

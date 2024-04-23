@@ -17,7 +17,7 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "shopping_cart_id", referencedColumnName = "shopping_cart_id")
     private ShoppingCart cart;
 
@@ -29,6 +29,8 @@ public class CartItem {
 
     private Long unitPrice;
 
+    private Long totalPrice;
+
     @Override
     public String toString() {
         return "CartItem{" +
@@ -37,7 +39,7 @@ public class CartItem {
                 ", product=" + product.getName() +
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
-                ", totalPrice=" +
+                ", totalPrice=" + totalPrice +
                 '}';
     }
 }
