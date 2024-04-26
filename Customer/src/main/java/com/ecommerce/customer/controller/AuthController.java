@@ -24,7 +24,7 @@ public class AuthController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
-        session.removeAttribute("username");
+        session.invalidate();
         return "login";
     }
 

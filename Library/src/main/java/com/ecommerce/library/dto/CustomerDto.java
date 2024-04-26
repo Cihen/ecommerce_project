@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDto {
-    @Size(min = 3, max = 15, message = "Firstname should have 3-15 characters !")
+    @Size(min = 2, max = 12, message = "Firstname should have 2-12 characters !")
     private String firstName;
 
-    @Size(min = 3, max = 15, message = "Lastname should have 3-15 characters !")
+    @Size(min = 2, max = 12, message = "Lastname should have 2-12 characters !")
     private String lastName;
 
     private String username;

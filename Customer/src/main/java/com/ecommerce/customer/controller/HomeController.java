@@ -34,6 +34,13 @@ public class HomeController {
         if(principal != null) {
             Customer customer = customerService.findByUsername(principal.getName());
             session.setAttribute("username", customer.getFirstName() + " " + customer.getLastName());
+
+            ShoppingCart cart = customer.getShoppingCart();
+            if(cart == null) {
+                session.setAttribute("totalItems", 0);
+            } else {
+                session.setAttribute("totalItems", cart.getTotalItems());
+            }
         }
         return "home";
     }

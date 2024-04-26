@@ -36,9 +36,11 @@ public class CartController {
         ShoppingCart shoppingCart = customer.getShoppingCart();
         if(shoppingCart == null || shoppingCart.getTotalItems() == 0) {
             model.addAttribute("check", "No item in your cart !");
+            model.addAttribute("subTotal", 0);
+        } else {
+            model.addAttribute("shoppingCart", shoppingCart);
+            model.addAttribute("subTotal", shoppingCart.getTotalPrice());
         }
-        model.addAttribute("shoppingCart", shoppingCart);
-        model.addAttribute("subTotal", shoppingCart.getTotalPrice());
 
         return "cart";
     }

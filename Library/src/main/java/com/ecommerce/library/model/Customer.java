@@ -23,10 +23,10 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
 
-    @Size(min = 3, max = 15, message = "Firstname should have 3-15 characters !")
+    @Size(min = 2, max = 12, message = "Firstname should have 2-12 characters !")
     private String firstName;
 
-    @Size(min = 3, max = 15, message = "Firstname should have 3-15 characters !")
+    @Size(min = 2, max = 12, message = "Firstname should have 2-12 characters !")
     private String lastName;
 
     private String username;
@@ -37,11 +37,11 @@ public class Customer {
 
     private String address;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "name", referencedColumnName = "id")
-    private City city;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "name", referencedColumnName = "id")
+    private String city;
 
-//    private String country;
+    private String country;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "customers_roles", joinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "customer_id"),
@@ -55,7 +55,7 @@ public class Customer {
     private List<Order> orders;
 
     public Customer() {
-//        this.country = "VN";
+        this.country = "VN";
         this.shoppingCart = new ShoppingCart();
         this.orders = new ArrayList<>();
     }
@@ -70,8 +70,8 @@ public class Customer {
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
-                ", city=" + city.getName() +
-//                ", country='" + country + '\'' +
+                ", city=" + city + '\'' +
+                ", country='" + country + '\'' +
                 ", roles=" + roles +
                 ", cart=" + shoppingCart.getId() +
                 ", orders=" + orders.size() +

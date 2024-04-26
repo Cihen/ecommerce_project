@@ -118,10 +118,10 @@
 <!--                            <li><a href="product-detail.html">Product Detail</a></li>-->
                             <li><a th:href="@{/cart}"> My Cart</a></li>
                             <li><a th:href="@{/account}">My Account</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a th:href="@{/check-out}">Checkout</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -133,7 +133,7 @@
                     <li class="side-menu">
                         <a th:href="@{/cart}">
                             <i class="fa fa-shopping-bag"></i>
-                            <span th:text = "${session.totalItems == null} ? '' : ${session.totalItems}" class="badge"></span>
+                            <span th:text = "${session.totalItems == null} ? '0' : ${session.totalItems}" class="badge"></span>
                             <p>My Cart </p>
                         </a>
                     </li>
@@ -319,7 +319,6 @@
 
     <!--  Start Script  -->
     <div th:fragment="script">
-        <!-- ALL JS FILES -->
         <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
         <script th:src="@{/js/popper.min.js}"></script>
         <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -327,7 +326,7 @@
         <script th:src="@{/js/jquery.superslides.min.js}"></script>
         <script th:src="@{/js/bootstrap-select.js}"></script>
         <script th:src="@{/js/inewsticker.js}"></script>
-        <script th:src="@{/js/bootsnav.js}"></script>
+        <script th:src="@{/js/bootsnav.js.}"></script>
         <script th:src="@{/js/images-loded.min.js}"></script>
         <script th:src="@{/js/isotope.min.js}"></script>
         <script th:src="@{/js/owl.carousel.min.js}"></script>
@@ -335,7 +334,7 @@
         <script th:src="@{/js/form-validator.min.js}"></script>
         <script th:src="@{/js/contact-form-script.js}"></script>
         <script th:src="@{/js/custom.js}"></script>
-</div>
+    </div>
     <!--  End Script  -->
 </body>
 </html>
