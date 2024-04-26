@@ -44,7 +44,7 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                    <th>Remove</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,23 +86,25 @@
                 </div>
             </div>
 
-            <div class="row my-5">
-                <div class="col-lg-6 col-sm-6">
-                    <div class="coupon-box">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                            <div class="input-group-append">
-                                <button class="btn btn-theme" type="button">Apply Coupon</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <div class="update-box">
-                        <a href="index.html"><input value="Update Cart" type="submit"></a> 
-                    </div>
-                </div>
-            </div>
+            <!--Discount-->
+
+<!--            <div class="row my-5">-->
+<!--                <div class="col-lg-6 col-sm-6">-->
+<!--                    <div class="coupon-box">-->
+<!--                        <div class="input-group input-group-sm">-->
+<!--                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">-->
+<!--                            <div class="input-group-append">-->
+<!--                                <button class="btn btn-theme" type="button">Apply Coupon</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-6 col-sm-6">-->
+<!--                    <div class="update-box">-->
+<!--                        <a href="index.html"><input value="Update Cart" type="submit"></a> -->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <div class="row my-5">
                 <div class="col-lg-8 col-sm-12"></div>
@@ -111,20 +113,20 @@
                         <h3>Order summary</h3>
                         <div class="d-flex">
                             <h4>Sub Total</h4>
-                            <div class="ml-auto font-weight-bold"> $180 </div>
+                            <div th:text=" '$' + ${subTotal}" class="ml-auto font-weight-bold"></div>
                         </div>
-                        <div class="d-flex">
-                            <h4>Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $0 </div>
-                        </div>
+<!--                        <div class="d-flex">-->
+<!--                            <h4>Discount</h4>-->
+<!--                            <div class="ml-auto font-weight-bold"> $0 </div>-->
+<!--                        </div>-->
                         <hr class="my-1">
-                        <div class="d-flex">
-                            <h4>Coupon Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $0 </div>
-                        </div>
+<!--                        <div class="d-flex">-->
+<!--                            <h4>Coupon Discount</h4>-->
+<!--                            <div class="ml-auto font-weight-bold"> $0 </div>-->
+<!--                        </div>-->
                         <div class="d-flex">
                             <h4>Tax</h4>
-                            <div class="ml-auto font-weight-bold"> $2 </div>
+                            <div th:text="${check} ? '$0' : '$3'" class="ml-auto font-weight-bold"></div>
                         </div>
                         <div class="d-flex">
                             <h4>Shipping Cost</h4>
@@ -133,7 +135,7 @@
                         <hr>
                         <div class="d-flex gr-total">
                             <h5>Grand Total</h5>
-                            <div class="ml-auto h5"> $182 </div>
+                            <div th:text="${check} ? '$0' : '$' + ${subTotal + 3}" class="ml-auto h5"></div>
                         </div>
                         <hr> </div>
                 </div>
@@ -152,8 +154,9 @@
     <footer th:replace="~{fragments :: footer}"></footer>
     <!--  End Footer  -->
 
-    <!--  Script -->
+    <!-- Start Script -->
     <div th:replace="~{fragments :: script}"></div>
+    <!-- End Script -->
 </body>
 
 </html>

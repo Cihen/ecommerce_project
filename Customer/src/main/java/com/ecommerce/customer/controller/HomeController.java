@@ -3,6 +3,7 @@ package com.ecommerce.customer.controller;
 import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Category;
 import com.ecommerce.library.model.Customer;
+import com.ecommerce.library.model.ShoppingCart;
 import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.CustomerService;
 import com.ecommerce.library.service.ProductService;

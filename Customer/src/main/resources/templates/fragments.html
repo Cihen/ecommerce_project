@@ -114,11 +114,11 @@
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Shop</a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{/products}">Shop Detail</a></li>
-                            <li><a href="product-detail.html">Product Detail</a></li>
-                            <li><a href="cart.html">Cart</a></li>
+                            <li><a th:href="@{/products}">Products</a></li>
+<!--                            <li><a href="product-detail.html">Product Detail</a></li>-->
+                            <li><a th:href="@{/cart}"> My Cart</a></li>
+                            <li><a th:href="@{/account}">My Account</a></li>
                             <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
@@ -133,8 +133,8 @@
                     <li class="side-menu">
                         <a th:href="@{/cart}">
                             <i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
-                            <p>My Cart</p>
+                            <span th:text = "${session.totalItems == null} ? '' : ${session.totalItems}" class="badge"></span>
+                            <p>My Cart </p>
                         </a>
                     </li>
                 </ul>
