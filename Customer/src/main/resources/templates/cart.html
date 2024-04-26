@@ -62,19 +62,23 @@
                                         <p th:text=" '$' + ${cartItem.product.costPrice}"></p>
                                     </td>
 
-                                    <td class="quantity-box">
-                                        <input type="number" size="4" th:value="${cartItem.quantity}" min="0" step="1" class="c-input-text qty text">
-                                    </td>
+                                    <form th:action="@{/update-cart}" method="post">
+                                        <input type="hidden" name="id" th:value="${cartItem.product.id}">
+                                        <td class="quantity-box">
+                                            <input type="number" size="4" th:value="${cartItem.quantity}"
+                                                   name="quantity" min="0" step="1"
+                                                   class="c-input-text qty text">
+                                        </td>
 
-                                    <td class="total-pr">
-                                        <p th:text="'$' + ${cartItem.totalPrice}"></p>
-                                    </td>
+                                        <td class="total-pr">
+                                            <p th:text="'$' + ${cartItem.totalPrice}"></p>
+                                        </td>
 
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
+                                        <td class="remove-pr">
+                                            <button type="submit" name="action" value="update" title="Update" class="btn btn-primary">Update</button>
+                                            <button type="submit" name="action" value="delete" title="Delete" class="btn btn-warning">Delete</button>
+                                        </td>
+                                    </form>
                                 </tr>
                             </tbody>
                         </table>

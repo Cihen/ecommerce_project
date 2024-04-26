@@ -41,17 +41,17 @@ public class LoginController {
         return "index";
     }
 
+    @GetMapping("/forgot-password")
+    public String forgotPassword(Model model) {
+        model.addAttribute("title", "Forgot Password");
+        return "forgot-password";
+    }
+
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("adminDto", new AdminDto());
         model.addAttribute("title", "Register");
         return "register";
-    }
-
-    @GetMapping("/forgot-password")
-    public String forgotPassword(Model model) {
-        model.addAttribute("title", "Forgot Password");
-        return "forgot-password";
     }
 
     @PostMapping("/register-new")
