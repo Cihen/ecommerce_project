@@ -44,10 +44,10 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="login-box">
                     <select id="" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
-                        <option th:text="${session.username != null} ? ${session.username} : 'Authentication'"></option>
-                        <option th:if="${session.username != null}" value="http://localhost:8020/shop/login?logout">Logout</option>
-                        <option th:if="${session.username == null}" value="http://localhost:8020/shop/login">Sign In</option>
-                        <option th:if="${session.username == null}" value="http://localhost:8020/shop/register">Sign Up</option>
+                        <option th:text="${session.mergeName != null} ? ${session.mergeName} : 'Authentication'"></option>
+                        <option th:if="${session.mergeName != null}" value="http://localhost:8020/shop/login?logout">Logout</option>
+                        <option th:if="${session.mergeName == null}" value="http://localhost:8020/shop/login">Sign In</option>
+                        <option th:if="${session.mergeName == null}" value="http://localhost:8020/shop/register">Sign Up</option>
                     </select>
                 </div>
                 <div class="text-slid-box">

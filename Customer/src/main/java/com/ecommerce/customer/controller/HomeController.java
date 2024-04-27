@@ -33,7 +33,7 @@ public class HomeController {
     public String home(Model model, Principal principal, HttpSession session) {
         if(principal != null) {
             Customer customer = customerService.findByUsername(principal.getName());
-            session.setAttribute("username", customer.getFirstName() + " " + customer.getLastName());
+            session.setAttribute("mergeName", customer.mergeName());
 
             ShoppingCart cart = customer.getShoppingCart();
             if(cart == null) {

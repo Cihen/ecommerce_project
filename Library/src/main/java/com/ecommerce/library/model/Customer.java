@@ -77,4 +77,12 @@ public class Customer {
                 ", orders=" + orders.size() +
                 '}';
     }
+
+    public String mergeName() {
+        return firstName + " " + lastName;
+    }
+
+    public String mergeAddresses() {
+        return address + " - " + city + " - " + country;
+    }
 }
