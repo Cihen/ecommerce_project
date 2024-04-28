@@ -29,30 +29,33 @@
     <!-- Start Shop Detail  -->
     <div class="shop-detail-box-main">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-5 col-lg-5 col-md-6">
-                    <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active"> <img th:src="'data:image/jpeg;base64,' + ${product.image}" class="d-block w-100" alt="First slide"> </div>
+            <form th:action="@{/add-to-cart}" method="post">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-6">
+                        <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active"> <img th:src="'data:image/jpeg;base64,' + ${product.image}" class="d-block w-100" alt="First slide"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-6">
+                        <div class="single-product-details">
+                            <h2 th:text="${product.name}"></h2>
+                            <h5 th:text="'$' + ${product.costPrice}"></h5>
+                            <h4>Short Description:</h4>
+                            <p th:text="${product.description}"></p>
+
+                            <div class="price-box-bar">
+                                <div class="cart-and-bay-btn">
+                                    <input type="hidden" th:value="${product.id}" name="id">
+                                    <input type="submit" class="btn hvr-hover" value="Add to Cart">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-7 col-lg-7 col-md-6">
-                    <div class="single-product-details">
-                        <h2 th:text="${product.name}"></h2>
-                        <h5 th:text="'$' + ${product.costPrice}"></h5>
-						<h4>Short Description:</h4>
-						<p th:text="${product.description}"></p>
-
-                            <div class="price-box-bar">
-							<div class="cart-and-bay-btn">
-								<a class="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
-							</div>
-						</div>
-						</div>
-                    </div>
-                </div>
             </div>
+            </form>
 			
             <div class="row my-5">
                 <div class="col-lg-12">
@@ -61,21 +64,24 @@
                     </div>
                     <div class="featured-products-box owl-carousel owl-theme">
                         <div th:each="productRelated : ${products}" class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img th:src="'data:image/jpeg;base64,' + ${productRelated.image}" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="product-detail.html" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        </ul>
-                                        <a class="cart" href="#">Add to Cart</a>
+                            <form th:action="@{/add-to-cart}" method="post" >
+                                <div class="products-single fix">
+                                    <div class="box-img-hover">
+                                        <img th:src="'data:image/jpeg;base64,' + ${productRelated.image}" class="img-fluid" alt="Image">
+                                        <div class="mask-icon">
+                                            <ul>
+                                                <li><a th:href="@{/find-product/{id} (id = ${productRelated.id})}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                            </ul>
+                                            <input type="hidden" th:value="${productRelated.id}" name="id">
+                                            <input type="submit" class="btn hvr-hover" value="Add to Cart">
+                                        </div>
+                                    </div>
+                                    <div class="why-text">
+                                        <h4 th:text="${productRelated.name}"></h4>
+                                        <h5 th:text="'$' + ${productRelated.costPrice}"></h5>
                                     </div>
                                 </div>
-                                <div class="why-text">
-                                    <h4 th:text="${productRelated.name}"></h4>
-                                    <h5 th:text="'$' + ${productRelated.costPrice}"></h5>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
