@@ -29,7 +29,7 @@ public class Order {
 
     private Long tax;
 
-    private int quantity;
+    private int TotalItems;
 
     private String paymentMethod;
 
@@ -41,18 +41,4 @@ public class Order {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderDetail> orderDetailList;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", orderDate=" + orderDate +
-                ", deliveryDate=" + deliveryDate +
-                ", totalPrice=" + totalPrice +
-                ", tax='" + tax + '\'' +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", customer=" + customer.getUsername() +
-                ", orderDetailList=" + orderDetailList.size() +
-                '}';
-    }
 }

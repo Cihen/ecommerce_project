@@ -10,4 +10,6 @@ public interface ShoppingCartService {
     ShoppingCart updateItemInCart(Product product, int quantity, Customer customer);
 
     ShoppingCart deleteItemFromCart(Product product, Customer customer);
+
+    void emptyCartById(Long id);
 }
