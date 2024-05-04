@@ -1502,7 +1502,7 @@
 }
 /*------------------------------------------------------------------ All Pages -------------------------------------------------------------------*/
  .all-title-box{
-     background: url("../images/Crab 02 - Crab Toast.jpg") no-repeat center center;
+     background: url("../images/attb.jpg") no-repeat center center;
      -webkit-background-size: cover;
      -moz-background-size: cover;
      -ms-background-size: cover;
@@ -2368,7 +2368,7 @@
 }
  .contact-info-left{
      padding: 20px;
-     background: url(../images/contact-bg.jpg) no-repeat center;
+     background: url(../images/contact.jpg) no-repeat center;
 	 
      width: 400px;
      height: 350px;
