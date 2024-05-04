@@ -34,21 +34,16 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th scope="col" class="text-center">Order Status</th>
                             <th scope="col" class="text-center">Order Date</th>
                             <th scope="col" class="text-center">Delivery Date</th>
                             <th scope="col" class="text-center">Quantity</th>
                             <th scope="col" class="text-center">Total Price</th>
                             <th scope="col" class="text-center">Payment Method</th>
-<!--                            <th scope="col" class="text-center">Action</th>-->
+                            <!--                            <th scope="col" class="text-center">Action</th>-->
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="order : ${orders}">
-                            <th>
-                                <p th:if="${order.accept} != false" class="text text-center text-success">ACTIVATED</p>
-                                <p th:if="${order.accept} == false" class="text text-center text-danger">PENDING</p>
-                            </th>
                             <th th:text="${order.orderDate}" class="text-center" scope="row"></th>
                             <td>
                                 <p th:if="${order.accept == false}" class="text-center">PENDING</p>
@@ -57,9 +52,9 @@
                             <td th:text="${order.totalItems}" class="text-center"></td>
                             <td th:text="${order.totalPrice}" class="text-center"></td>
                             <td th:text="${order.paymentMethod}" class="text-center"></td>
-<!--                            <td class="text-center">-->
-<!--                                <a th:href="@{/cancel-order(id = ${order.id})}" class="btn btn-warning">Cancel</a>-->
-<!--                            </td>-->
+                            <!--                            <td class="text-center">-->
+                            <!--                                <button type="button" class="btn btn-warning">Cancel</button>-->
+                            <!--                            </td>-->
                         </tr>
                         </tbody>
                     </table>

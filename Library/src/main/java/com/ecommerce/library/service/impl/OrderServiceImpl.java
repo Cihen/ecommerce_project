@@ -67,4 +67,16 @@ public class OrderServiceImpl implements OrderService {
     public void cancelOrder(Long id) {
         orderRepository.deleteById(id);
     }
+
+    @Override
+    public List<Order> findAllOrdersByUsername(String username) {
+        Customer customer = customerRepository.findByUsername(username);
+        List<Order> orders = customer.getOrders();
+        return orders;
+    }
+
+    @Override
+    public List<Order> findALlOrders() {
+        return orderRepository.findAll();
+    }
 }

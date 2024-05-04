@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: header}"></head>
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!--Sidebar-->
+  <ul th:replace="~{fragments :: sidebar}"></ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav th:replace="~{fragments :: topbar}"></nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="cart-box-main">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div th:if="${success}" class="text-center alert-success alert">
+                <p th:text="${success}"></p>
+              </div>
+              <div class="table-main table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Order Status</th>
+                    <th scope="col" class="text-center">Customer</th>
+                    <th scope="col" class="text-center">Order Date</th>
+                    <th scope="col" class="text-center">Delivery Date</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-center">Total Price</th>
+                    <th scope="col" class="text-center">Payment Method</th>
+                    <th scope="col" class="text-center">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="order : ${orders}">
+                    <th>
+                      <p th:if="${order.accept} != false" class="text text-center text-success">ACTIVATED</p>
+                      <p th:if="${order.accept} == false" class="text text-center text-danger">PENDING</p>
+                    </th>
+                    <th th:text="${order.customer.username}"></th>
+                    <th>
+                      <p th:text="${order.orderDate}" class="text-center"></p>
+                    </th>
+                    <td>
+                      <p th:if="${order.accept == false}" class="text-center">PENDING</p>
+                      <p th:if="${order.accept == true}" th:text="${order.deliveryDate}" class="text-center"></p>
+                    </td>
+                    <td th:text="${order.totalItems}" class="text-center"></td>
+                    <td th:text="${order.totalPrice}" class="text-center"></td>
+                    <td th:text="${order.paymentMethod}" class="text-center"></td>
+                    <td class="text-center">
+                      <a th:if="${order.accept} == false" th:href="@{/accept-order(id = ${order.id})}" class=" btn btn-success">Accept</a>
+<!--                      <a th:if="${order.accept} != false" class="btn btn-danger">Cancel</a>-->
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+  </div>
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a th:replace="~{fragments :: scroll}"></a>
+
+<!--Add Categories Modal-->
+
+
+<!--End-->
+
+<!-- End -->
+<!-- Bootstrap core JavaScript-->
+<div th:replace="~{fragments::script}"></div>
+
+<script th:src="@{/js/categories.js}"></script>
+</body>
+
+</html>

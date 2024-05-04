@@ -56,8 +56,8 @@ public class OrderController {
 
     @PostMapping("/add-order")
     public String createOrder(Principal principal,
-                              Model model,
-                              HttpSession session) {
+                              HttpSession session,
+                              RedirectAttributes attributes) {
         if (principal == null) {
             return "redirect:/login";
         } else {
@@ -68,10 +68,11 @@ public class OrderController {
             }
             Order order = orderService.save(cart);
 //                session.removeAttribute("totalItems");
-            model.addAttribute("order", order);
-            model.addAttribute("title", "Order Detail");
-            model.addAttribute("page", "Order Detail");
-            model.addAttribute("success", "Add order successfully");
+//            model.addAttribute("order", order);
+            attributes.addFlashAttribute("order", order);
+            attributes.addFlashAttribute("title", "Order Detail");
+            attributes.addFlashAttribute("page", "Order Detail");
+            attributes.addFlashAttribute("success", "Add order successfully");
 
             session.setAttribute("totalItems", cart.getTotalItems());
 
@@ -89,6 +90,7 @@ public class OrderController {
             model.addAttribute("orders", orderList);
             model.addAttribute("title", "Order");
             model.addAttribute("page", "Order");
+            System.out.println(orderList.size());
             return "order";
         }
     }

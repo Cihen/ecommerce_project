@@ -41,6 +41,16 @@ public class LoginController {
         return "index";
     }
 
+    @RequestMapping("/dashboard")
+    public String dashboard(Model model) {
+        model.addAttribute("title", "Dashboard Page");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "redirect:/login";
+        }
+        return "dashboard";
+    }
+
     @GetMapping("/forgot-password")
     public String forgotPassword(Model model) {
         model.addAttribute("title", "Forgot Password");

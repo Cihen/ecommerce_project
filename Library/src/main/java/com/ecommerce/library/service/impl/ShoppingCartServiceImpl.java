@@ -10,7 +10,9 @@ import com.ecommerce.library.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -132,13 +134,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public void emptyCartById(Long id) {
         ShoppingCart shoppingCart = cartRepository.getById(id);
-        Set<CartItem> cartItems = shoppingCart.getCartItems();
-        for (CartItem item : shoppingCart.getCartItems()) {
-            cartItems.remove(item);
-            itemRepository.delete(item);
-        }
-//        shoppingCart.setCustomer(null);
+        Set<CartItem> cartItems = new HashSet<>();
         shoppingCart.setCartItems(cartItems);
+        itemRepository.deleteAll();
+//        for (CartItem item : shoppingCart.getCartItems()) {
+//            itemRepository.delete(item);
+//        }
+//        shoppingCart.setCustomer(null);
         shoppingCart.setTotalPrice(0L);
         shoppingCart.setTotalItems(0);
         cartRepository.save(shoppingCart);
