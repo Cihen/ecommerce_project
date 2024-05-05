@@ -44,7 +44,11 @@ public class AdminConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( author ->
                         author.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                                .requestMatchers("/index").hasAuthority("ADMIN")
+                                .requestMatchers("/dashboard").hasAuthority("ADMIN")
+                                .requestMatchers("/categories").hasAuthority("ADMIN")
+                                .requestMatchers("/products/**").hasAuthority("ADMIN")
+                                .requestMatchers("/orders").hasAuthority("ADMIN")
                                 .requestMatchers("/forgot-password", "/register", "/register-new").permitAll()
                                 .anyRequest().authenticated()
 

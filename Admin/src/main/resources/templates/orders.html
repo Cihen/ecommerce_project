@@ -18,6 +18,7 @@
 
       <!-- Topbar -->
       <nav th:replace="~{fragments :: topbar}"></nav>
+      <div th:replace="~{fragments :: logoutModal}"></div>
       <!-- End of Topbar -->
 
       <!-- Begin Page Content -->
@@ -52,10 +53,7 @@
                     <th>
                       <p th:text="${order.orderDate}" class="text-center"></p>
                     </th>
-                    <td>
-                      <p th:if="${order.accept == false}" class="text-center">PENDING</p>
-                      <p th:if="${order.accept == true}" th:text="${order.deliveryDate}" class="text-center"></p>
-                    </td>
+                    <td th:text="${order.accept == false} ? 'PENDING' : ${order.deliveryDate}" class="text-center"></td>
                     <td th:text="${order.totalItems}" class="text-center"></td>
                     <td th:text="${order.totalPrice}" class="text-center"></td>
                     <td th:text="${order.paymentMethod}" class="text-center"></td>

@@ -20,7 +20,7 @@ public class Admin {
 
     private String firstName;
 
-    private String lasName;
+    private String lastName;
 
     private String username;
 
@@ -37,4 +37,8 @@ public class Admin {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     )
     private Collection<Role> roles;
+
+    public String mergeName() {
+        return firstName + " " + lastName;
+    }
 }

@@ -3,6 +3,7 @@ package com.ecommerce.admin.controller;
 import com.ecommerce.library.dto.AdminDto;
 import com.ecommerce.library.model.Admin;
 import com.ecommerce.library.service.impl.AdminServiceImpl;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
 public class LoginController {
     @Autowired
@@ -26,18 +29,24 @@ public class LoginController {
     BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
-    public String loginForm(Model model) {
+    public String loginForm(Model model, HttpSession session) {
         model.addAttribute("title", "Login");
+        session.invalidate();
         return "login";
     }
 
     @RequestMapping("/index")
-    public String home(Model model) {
+    public String home(Model model, Principal principal, HttpSession session) {
         model.addAttribute("title", "Home Page");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "redirect:/login";
         }
+        if(principal != null) {
+            Admin admin = adminService.findByUsername(principal.getName());
+            session.setAttribute("mergeName", admin.mergeName());
+        }
+
         return "index";
     }
 
