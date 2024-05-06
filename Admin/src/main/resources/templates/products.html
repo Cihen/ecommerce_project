@@ -44,28 +44,28 @@
                 <table class="table table-striped" th:if = "${size > 0}">
                     <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" class="text text-center">Name</th>
+                        <th scope="col" class="text text-center">Category</th>
+                        <th scope="col" class="text text-center">Price</th>
+                        <th scope="col" class="text text-center">Quantity</th>
+                        <th scope="col" class="text text-center">Image</th>
+                        <th scope="col" class="text text-center">Update</th>
+                        <th scope="col" class="text text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each = "product : ${products}">
-                        <th scope="row" th:text = "${product.name}"></th>
-                        <td th:text = "${product.category.name}"></td>
-                        <td th:text = "${product.costPrice}"></td>
-                        <td th:text = "${product.currentQuantity}"></td>
-                        <td>
+                        <th scope="row" th:text = "${product.name}" class="text text-center"></th>
+                        <td th:text = "${product.category.name}" class="text text-center"></td>
+                        <td th:text = "${product.costPrice}" class="text text-center"></td>
+                        <td th:text = "${product.currentQuantity}" class="text text-center"></td>
+                        <td class="text text-center">
 <!--                            <img src="" th:src = "*{'data:image/jpeg;base64,' + {product.image}}" alt="Product image">-->
                             <img class = "my-product-image" style="height: 40px; width: 40px;" alt="Product image" th:src="'data:image/jpeg;base64,' + ${product.image}">
 <!--                            <img th:src="@{'static/img/Image-product' + ${product.image}}" width="100 px" alt="Product image">-->
                         </td>
-                        <td><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">Update</a></td>
-                        <td>
+                        <td class="text text-center"><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">Update</a></td>
+                        <td class="text text-center">
                             <a th:if = "${product.activated == false}" th:href="@{/enable-product/{id} (id = ${product.id})}" class="btn btn-warning">Enable</a>
                             <a th:if = "${product.deleted == false}" th:href = "@{/delete-product/{id} (id = ${product.id})}" class="btn btn-danger">Delete</a>
                         </td>

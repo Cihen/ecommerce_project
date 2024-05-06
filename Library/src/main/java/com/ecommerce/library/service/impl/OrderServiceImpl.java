@@ -49,6 +49,9 @@ public class OrderServiceImpl implements OrderService {
 
             detailRepository.save(orderDetail);
             orderDetailList.add(orderDetail);
+
+            Product product = item.getProduct();
+            product.setCurrentQuantity(product.getCurrentQuantity() - item.getQuantity());
         }
         order.setOrderDetailList(orderDetailList);
         cartService.emptyCartById(shoppingCart.getId());
