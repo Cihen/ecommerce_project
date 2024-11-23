@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminDto {
-    @Size(min = 3, max = 10, message = "Invalid first name (3-10 characters)")
+    @Size(min = 2, max = 10, message = "Invalid first name (2-10 characters)")
     private String firstName;
 
-    @Size(min = 3, max = 10, message = "Invalid last name (3-10 characters)")
+    @Size(min = 2, max = 10, message = "Invalid last name (2-10 characters)")
     private String lastName;
 
     private String username;
