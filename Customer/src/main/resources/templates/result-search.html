@@ -30,7 +30,7 @@
 <!-- Start Shop Page  -->
 <div class="shop-box-inner">
     <div class="container">
-        <div class="row">
+        <div class="row" >
             <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
                 <div class="right-product-box">
                     <!--  Nav-product-->
@@ -39,9 +39,9 @@
                             <div class="toolbar-sorter-right">
                                 <span>Sort by </span>
                                 <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" onchange="location = this.value;">
+                                    <option value="http://localhost:8020/shop/products">Default</option>
                                     <option value="http://localhost:8020/shop/high-price">High Price → Low Price</option>
                                     <option value="http://localhost:8020/shop/low-price">Low Price → High Price</option>
-                                    <option value="http://localhost:8020/shop/products">Default</option>
 
                                     <!--                    <option value="4">Best Selling</option>-->
                                 </select>
@@ -67,21 +67,26 @@
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                 <div class="row">
                                     <div th:each="product : ${products}" class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                        <div class="products-single fix">
-                                            <div class="box-img-hover">
-                                                <img th:src="'data:image/jpeg;base64,' + ${product.image}" class="img-fluid" alt="Image">
-                                                <div class="mask-icon">
-                                                    <ul>
-                                                        <li><a th:href="@{/find-product/{id}(id = ${product.id})}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                    </ul>
-                                                    <a class="cart" href="#">Add to Cart</a>
+                                        <form th:action="@{/add-to-cart}" method="post" >
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a th:href="@{/find-product/{id}(id = ${product.id})}" data-toggle="tooltip"
+                                                                   data-placement="right"
+                                                                   title="View"><i class="fas fa-eye"></i></a></li>
+                                                        </ul>
+                                                        <input type="hidden" th:value="${product.id}" name="id">
+                                                        <input type="submit" class="btn hvr-hover" value="Add to Cart">
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4 th:text="${product.name}"></h4>
+                                                    <h5 th:text="${product.costPrice} + ' VND'"></h5>
                                                 </div>
                                             </div>
-                                            <div class="why-text">
-                                                <h4 th:text="${product.name}"></h4>
-                                                <h5 th:text="${product.costPrice}  + ' VND'"></h5>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -89,22 +94,25 @@
                             <!--  List view  -->
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <div class="list-view-box">
-                                    <div class="row" th:each="productView : ${viewProducts}">
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <img th:src="'data:image/jpeg;base64,' + ${productView.image}" class="img-fluid" alt="Image">
+                                    <div class="row" th:each="productView : ${viewProducts}" >
+                                        <form th:action="@{/add-to-cart}" method="post" style="display: flex">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <img th:src="'data:image/jpeg;base64,' + ${productView.image}" class="img-fluid" alt="Image">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                            <div class="why-text full-width">
-                                                <h4 th:text="${productView.name}"></h4>
-                                                <h5 th:text="${productView.costPrice}  + ' VND'"></h5>
-                                                <p th:text="${productView.description}"></p>
-                                                <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                <div class="why-text full-width">
+                                                    <h4 th:text="${productView.name}"></h4>
+                                                    <h5 th:text="${productView.costPrice} + ' VND'"></h5>
+                                                    <p th:text="${productView.description}"></p>
+                                                    <input type="hidden" th:value="${productView.id}" name="id">
+                                                    <input type="submit" class="btn hvr-hover" value="Add to Cart">
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +124,7 @@
             <!--  List categories  -->
 
             <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
-                <div class="product-categori">
+                <div class="product-category">
                     <div class="search-product">
                         <form th:action="@{/search-products}" method="get">
                             <input class="form-control" placeholder="Search here..." type="text" name="keyword">

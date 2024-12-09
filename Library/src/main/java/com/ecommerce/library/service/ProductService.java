@@ -16,7 +16,7 @@ public interface ProductService {
     void deleteById(Long id);
     void enableById(Long id);
     ProductDto getById(Long id);
-    Page<ProductDto> pageProducts(int pageNo);
+    Page<ProductDto> pageProductsAdmin(int pageNo);
     Page<ProductDto> searchProducts(int pageNo, String keyword);
 
     /* Customer */
@@ -27,4 +27,5 @@ public interface ProductService {
     List<Product> getProductsInCategory(Long categoryId);
     List<Product> filterHighPrice();
     List<Product> filterLowPrice();
+    List<Product> filterSearch(String keyword);
 }

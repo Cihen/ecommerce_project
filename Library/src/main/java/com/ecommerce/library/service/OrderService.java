@@ -11,4 +11,5 @@ public interface OrderService {
     void cancelOrder(Long id);
     List<Order> findAllOrdersByUsername(String username);
     List<Order> findALlOrders();
+    Order changePaymentStatus(String responseCode, Long id);
 }

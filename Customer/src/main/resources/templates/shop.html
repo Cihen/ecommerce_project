@@ -83,7 +83,7 @@
                                                     </div>
                                                     <div class="why-text">
                                                         <h4 th:text="${product.name}"></h4>
-                                                        <h5 th:text="'$' + ${product.costPrice}"></h5>
+                                                        <h5 th:text="${product.costPrice} + ' VND'"></h5>
                                                     </div>
                                                 </div>
                                             </form>
@@ -106,7 +106,7 @@
                                                 <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
                                                     <div class="why-text full-width">
                                                         <h4 th:text="${productView.name}"></h4>
-                                                        <h5 th:text="'$' + ${productView.costPrice}"></h5>
+                                                        <h5 th:text="${productView.costPrice} + ' VND'"></h5>
                                                         <p th:text="${productView.description}"></p>
                                                         <input type="hidden" th:value="${productView.id}" name="id">
                                                         <input type="submit" class="btn hvr-hover" value="Add to Cart">
@@ -126,8 +126,8 @@
 				<div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                     <div class="product-category">
                         <div class="search-product">
-                            <form action="#">
-                                <input class="form-control" placeholder="Search here..." type="text">
+                            <form th:action="@{/search-products}" method="get">
+                                <input class="form-control" placeholder="Search here..." type="text" name="keyword">
                                 <button type="submit"> <i class="fa fa-search"></i> </button>
                             </form>
                         </div>

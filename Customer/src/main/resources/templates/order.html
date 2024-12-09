@@ -44,6 +44,7 @@
                             <th scope="col" class="text-center">Quantity</th>
                             <th scope="col" class="text-center">Total Price</th>
                             <th scope="col" class="text-center">Payment Method</th>
+                            <th scope="col" class="text-center">Payment Status</th>
 <!--                            <th scope="col" class="text-center">Action</th>-->
                         </tr>
                         </thead>
@@ -59,11 +60,15 @@
                                 <p th:if="${order.accept == true}" th:text="${order.deliveryDate}" class="text-center"></p>
                             </td>
                             <td th:text="${order.totalItems}" class="text-center"></td>
-                            <td th:text="${order.totalPrice}" class="text-center"></td>
+                            <td th:text="${order.totalPrice} + 3000" class="text-center"></td>
                             <td th:text="${order.paymentMethod}" class="text-center"></td>
 <!--                            <td class="text-center">-->
 <!--                                <a th:href="@{/cancel-order(id = ${order.id})}" class="btn btn-warning">Cancel</a>-->
 <!--                            </td>-->
+                            <td class="text-center">
+                                <a th:if="${order.paid} == false" th:href="@{/create-payment(orderId = ${order.id})}" class=" btn btn-success">PAY</a>
+                                <p th:if="${order.paid} != false" class="text text-center text-success">PAID</p>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

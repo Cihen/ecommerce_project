@@ -1,16 +1,20 @@
 package com.ecommerce.customer.controller;
 
 import com.ecommerce.library.dto.CategoryDto;
+import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Category;
 import com.ecommerce.library.model.Product;
 import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -74,4 +78,37 @@ public class ProductController {
         model.addAttribute("viewProducts", listViewProducts);
         return "filter-low-price";
     }
+
+    @GetMapping("/search-products")
+    public String searchProducts(@RequestParam("keyword") String keyword,
+                                 Model model,
+                                 Principal principal) {
+        if(principal == null) {
+            return "redirect:/login";
+        }
+        List<Product> products = productService.filterSearch(keyword.trim());
+        model.addAttribute("title", "Search result");
+        model.addAttribute("products", products);
+
+        List<CategoryDto> categoryDtoList = categoryService.getCategoriesAndSize();
+        model.addAttribute("categories", categoryDtoList);
+        return "result-search";
+    }
+
+//    @GetMapping("/search-result/{pageNo}")
+//    public String searchProducts(@PathVariable("pageNo") int pageNo,
+//                                 @RequestParam("keyword") String keyword,
+//                                 Model model,
+//                                 Principal principal) {
+//        if(principal == null) {
+//            return "redirect:/login";
+//        }
+//        Page<ProductDto> products = productService.searchProducts(pageNo, keyword);
+//        model.addAttribute("title", "Search result");
+//        model.addAttribute("products", products);
+//        model.addAttribute("size", products.getSize());
+//        model.addAttribute("totalPages", products.getTotalPages());
+//        model.addAttribute("currentPage", pageNo);
+//        return "result-products";
+//    }
 }

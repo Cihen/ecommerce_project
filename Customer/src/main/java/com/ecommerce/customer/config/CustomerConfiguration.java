@@ -50,6 +50,7 @@ public class CustomerConfiguration {
                                 .requestMatchers("/*").permitAll()
                                 .requestMatchers("/find-product/**").permitAll()
                                 .requestMatchers("/products-in-category/**").permitAll()
+                                .requestMatchers("/search-products/**").permitAll()
 
                 )
                 .formLogin(login ->

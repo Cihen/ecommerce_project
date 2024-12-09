@@ -41,6 +41,7 @@
                     <th scope="col" class="text-center">Total Price</th>
                     <th scope="col" class="text-center">Payment Method</th>
                     <th scope="col" class="text-center">Action</th>
+                    <th scope="col" class="text-center">Payment Status</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -55,12 +56,16 @@
                     </th>
                     <td th:text="${order.accept == false} ? 'PENDING' : ${order.deliveryDate}" class="text-center"></td>
                     <td th:text="${order.totalItems}" class="text-center"></td>
-                    <td th:text="${order.totalPrice}" class="text-center"></td>
+                    <td th:text="${order.totalPrice} + 3000" class="text-center"></td>
                     <td th:text="${order.paymentMethod}" class="text-center"></td>
                     <td class="text-center">
                       <a th:if="${order.accept} == false" th:href="@{/accept-order(id = ${order.id})}" class=" btn btn-success">Accept</a>
 <!--                      <a th:if="${order.accept} != false" class="btn btn-danger">Cancel</a>-->
                     </td>
+                    <th>
+                      <p th:if="${order.paid} != false" class="text text-center text-success">PAID</p>
+                      <p th:if="${order.paid} == false" class="text text-center text-warning">UNPAID</p>
+                    </th>
                   </tr>
                   </tbody>
                 </table>

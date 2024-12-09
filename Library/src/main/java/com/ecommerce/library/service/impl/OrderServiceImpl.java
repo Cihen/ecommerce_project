@@ -82,4 +82,11 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findALlOrders() {
         return orderRepository.findAll();
     }
+
+    @Override
+    public Order changePaymentStatus(String responseCode, Long id) {
+        Order order = orderRepository.getById(id);
+        order.setPaid(true);
+        return orderRepository.save(order);
+    }
 }

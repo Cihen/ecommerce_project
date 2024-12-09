@@ -35,6 +35,8 @@ public class Order {
 
     private boolean isAccept;
 
+    private boolean isPaid;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customer;

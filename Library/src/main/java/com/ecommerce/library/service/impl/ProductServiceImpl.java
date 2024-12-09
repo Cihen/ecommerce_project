@@ -19,8 +19,7 @@ import java.util.Base64;
 import java.util.List;
 
 @Service
-public
-class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -125,7 +124,7 @@ class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductDto> pageProducts(int pageNo) {
+    public Page<ProductDto> pageProductsAdmin(int pageNo) {
         Pageable pageable = PageRequest.of(pageNo, 5);
         List<ProductDto> products = transfer(productRepository.findAll());
         Page<ProductDto> productPages = toPage(products, pageable);
@@ -206,5 +205,10 @@ class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> filterLowPrice() {
         return productRepository.filterLowPrice();
+    }
+
+    @Override
+    public List<Product> filterSearch(String keyword) {
+        return productRepository.searchProductsList(keyword);
     }
 }
